@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import SignInPage from './components/SignInPage';
 import UserProfilePage from './components/UserProfilePage';
+import ProtectedRoute from './components/ProtectedRoute'; // Assurez-vous d'importer le composant
 
 function App() {
   return (
@@ -13,7 +14,15 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-in" element={<SignInPage />} />
-        <Route path="/user-profile" element={<UserProfilePage />} />
+        {/* Utilisation de ProtectedRoute pour protéger la page de profil utilisateur */}
+        <Route
+          path="/user-profile"
+          element={
+            <ProtectedRoute>
+              <UserProfilePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
