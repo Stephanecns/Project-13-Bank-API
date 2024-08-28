@@ -15,7 +15,7 @@ body {
 
 .main {
   flex: 1;
-  height: 609px;
+  height: 745px;
   padding-top: 20px;
 }
 
@@ -290,4 +290,23 @@ body {
   .transaction-button {
     width: 200px;
   }
+}
+
+.edit-form {
+  margin-top: 20px;
+}
+
+.edit-form .input-wrapper {
+  margin-bottom: 1rem;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.edit-button {
+  margin-top: 10px;
 }
