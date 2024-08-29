@@ -1,10 +1,13 @@
-// redux/store.js
+// Importation de la fonction configureStore depuis @reduxjs/toolkit
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './reducers/userReducer'; // Assurez-vous que ce chemin est correct
+// Importation du reducer userReducer qui gère l'état lié à l'utilisateur
+import userReducer from './reducers/userReducer';
 
+// Configuration du store Redux
 const store = configureStore({
+  // Déclaration des reducers utilisés dans le store
   reducer: {
-    user: userReducer,
+    user: userReducer,// Le reducer 'userReducer' est assigné à la clé 'user'
   },
 });
 

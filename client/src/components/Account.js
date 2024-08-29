@@ -1,7 +1,10 @@
 import React from 'react';
 
+// Déclaration d'un composant fonctionnel nommé 'Account'.
+// Ce composant reçoit trois propriétés (props) : title, amount, et description.
 const Account = ({ title, amount, description }) => {
   return (
+    // Le composant retourne un élément de section avec une classe CSS 'account'.
     <section className="account">
       <div className="account-content-wrapper">
         <h3 className="account-title">{title}</h3>

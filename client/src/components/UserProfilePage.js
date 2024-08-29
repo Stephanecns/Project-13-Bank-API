@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile } from '../redux/actions/authActions';
-import Account from './Account';
+import React, { useState } from 'react'; // Importation des modules React nécessaires
+import { useDispatch, useSelector } from 'react-redux'; // Importation des hooks de React-Redux pour gérer l'état global et les actions
+import { updateUserProfile } from '../redux/actions/authActions'; // Importation de l'action updateUserProfile pour mettre à jour le profil utilisateur
+import Account from './Account';// Importation du composant Account pour afficher les informations de compte
 
+// Déclaration d'un composant fonctionnel nommé 'UserProfilePage'.
 const UserProfilePage = () => {
-  const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.user.userDetails);
+  const dispatch = useDispatch(); // Utilisation du hook useDispatch pour obtenir la fonction dispatch
+  const userDetails = useSelector((state) => state.user.userDetails); // Récupération des détails de l'utilisateur depuis le store Redux
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [firstName, setFirstName] = useState(userDetails.firstName || '');
-  const [lastName, setLastName] = useState(userDetails.lastName || '');
+// États locaux pour gérer l'édition du profil et les champs de saisie du nom
+  const [isEditing, setIsEditing] = useState(false); // État pour savoir si l'utilisateur est en mode édition ou non
+  const [firstName, setFirstName] = useState(userDetails.firstName || ''); // État pour le prénom de l'utilisateur, initialisé avec les détails de l'utilisateur ou une chaîne vide
+  const [lastName, setLastName] = useState(userDetails.lastName || ''); // État pour le nom de famille de l'utilisateur, initialisé avec les détails de l'utilisateur ou une chaîne vide
 
+  // Données des comptes de l'utilisateur, définies localement pour cet exemple
   const accounts = [
     {
       title: 'Argent Bank Checking (x8349)',
@@ -29,14 +32,16 @@ const UserProfilePage = () => {
     },
   ];
 
+  // Fonction pour basculer le mode édition
   const handleEditToggle = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(!isEditing);  // Inverse l'état de isEditing
   };
 
+  // Fonction pour sauvegarder les modifications apportées au profil utilisateur
   const handleSave = (e) => {
-    e.preventDefault();
-    dispatch(updateUserProfile({ firstName, lastName }));
-    setIsEditing(false);
+    e.preventDefault(); // Empêche le rechargement de la page lors de la soumission du formulaire
+    dispatch(updateUserProfile({ firstName, lastName })); // Déclenche l'action pour mettre à jour le profil utilisateur avec les nouvelles informations
+    setIsEditing(false); // Désactive le mode édition après la sauvegarde
   };
 
   return (

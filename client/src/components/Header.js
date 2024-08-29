@@ -1,19 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../redux/actions/authActions';
-import { useNavigate } from 'react-router-dom'; // Importer useNavigate pour la redirection
+import { useSelector, useDispatch } from 'react-redux';// Importation des hooks de React-Redux pour accéder au store et dispatcher des actions
+import { logoutUser } from '../redux/actions/authActions';// Importation de l'action logoutUser pour déconnecter l'utilisateur
+import { useNavigate } from 'react-router-dom'; // Importation de useNavigate pour gérer la navigation entre les pages
 import logo from '../img/argentBankLogo.png';
 
+// Déclaration d'un composant fonctionnel nommé 'Header'.
 const Header = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // Utiliser useNavigate pour la redirection
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const dispatch = useDispatch();// Utilisation du hook useDispatch pour obtenir la fonction dispatch
+  const navigate = useNavigate(); // Utilisation du hook useNavigate pour la navigation
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);// Utilisation du hook useSelector pour récupérer l'état d'authentification de l'utilisateur
 
+  // Fonction pour gérer la déconnexion de l'utilisateur
   const handleLogout = () => {
     dispatch(logoutUser()); // Déconnecte l'utilisateur
     navigate('/'); // Redirige vers la page d'accueil après la déconnexion
   };
-
+  
+  // Fonction pour gérer le clic sur le logo de la page d'accueil
   const handleHomeClick = (e) => {
     if (isAuthenticated) {
       e.preventDefault(); // Empêche le comportement par défaut du lien

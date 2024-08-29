@@ -1,12 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';// Importation des composants nécessaires de react-router-dom pour la gestion des routes
+
+// Importation des composants
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import SignInPage from './components/SignInPage';
 import UserProfilePage from './components/UserProfilePage';
-import ProtectedRoute from './components/ProtectedRoute'; // Assurez-vous d'importer le composant
-
+import ProtectedRoute from './components/ProtectedRoute'; 
 function App() {
   return (
     <Router>
