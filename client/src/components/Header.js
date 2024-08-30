@@ -9,7 +9,8 @@ const Header = () => {
   const dispatch = useDispatch();// Utilisation du hook useDispatch pour obtenir la fonction dispatch
   const navigate = useNavigate(); // Utilisation du hook useNavigate pour la navigation
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);// Utilisation du hook useSelector pour récupérer l'état d'authentification de l'utilisateur
-
+  const firstName = useSelector((state) => state.user.userDetails.firstName); // Utilisation du hook useSelector pour récupérer le prénom de l'utilisateur
+  
   // Fonction pour gérer la déconnexion de l'utilisateur
   const handleLogout = () => {
     dispatch(logoutUser()); // Déconnecte l'utilisateur
@@ -36,10 +37,18 @@ const Header = () => {
       </a>
       <div>
         {isAuthenticated ? (
+          <>
+          {/* Affichage du prénom de l'utilisateur après connexion */}
+          <a className="main-nav-item" href="/user-profile">
+            <i className="fa fa-user-circle"></i>
+            {firstName}
+          </a>
+          {/* Lien pour la déconnexion */}
           <a className="main-nav-item" href="/" onClick={handleLogout}>
             <i className="fa fa-sign-out"></i>
             Sign Out
           </a>
+        </>
         ) : (
           <a className="main-nav-item" href="/sign-in">
             <i className="fa fa-user-circle"></i>
