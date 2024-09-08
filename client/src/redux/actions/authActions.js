@@ -3,6 +3,8 @@ import axios from 'axios'; // Importation de la bibliothèque axios pour effectu
 
 const API_URL = 'http://localhost:3001/api/v1'; // URL de base de l'API pour effectuer les requêtes
 
+
+
 // Action pour la connexion de l'utilisateur
 export const loginUser = (credentials) => async (dispatch) => {
   try {
@@ -11,24 +13,20 @@ export const loginUser = (credentials) => async (dispatch) => {
     const { token } = response.data.body; // Extraction du token de la réponse de l'API
 
     if (token) {
-      // Si un token est reçu, il est stocké dans le localStorage pour une utilisation future
-      localStorage.setItem('token', token);
-      // Envoi d'une action de succès de connexion avec le token en tant que payload
-      dispatch({
-        type: 'LOGIN_SUCCESS',
-        payload: token,
-      });
-
-      // Appel de l'action pour récupérer le profil utilisateur après une connexion réussie
-      dispatch(fetchUserProfile());
+      localStorage.setItem('token', token); // Stocker le token dans le localStorage
+      dispatch({type: 'LOGIN_SUCCESS', payload: token ,}); // Action de succès de connexion
+      dispatch(fetchUserProfile());  // Récupére le profil après connexion réussie
     } else {
-       // Gestion du cas où le token n'est pas reçu
       console.error('Token non reçu');
     }
   } catch (error) {
     console.error('Erreur lors de la connexion', error);
   }
 };
+
+
+
+
 
 // Action pour récupérer le profil utilisateur
 export const fetchUserProfile = () => async (dispatch) => {
@@ -51,11 +49,8 @@ export const fetchUserProfile = () => async (dispatch) => {
       // Si les informations utilisateur sont reçues, elles sont stockées dans le localStorage
       localStorage.setItem('userDetails', JSON.stringify(response.data.body));
 
-      // Envoi d'une action de succès de récupération de profil avec les données utilisateur en tant que payload
-      dispatch({
-        type: 'FETCH_PROFILE_SUCCESS',
-        payload: response.data.body,
-      });
+      //Déclenche FETCH_PROFILE_SUCCESS pour mettre à jour le store avec les détails de l'utilisateur.
+      dispatch({ type: 'FETCH_PROFILE_SUCCESS', payload: response.data.body, });
     } else {
       // Gestion du cas où la réponse de l'API est inattendue
       console.error('Réponse inattendue du serveur', response.data);
@@ -66,6 +61,10 @@ export const fetchUserProfile = () => async (dispatch) => {
   }
 };
 
+
+
+
+//Permet de mettre à jour les informations du profil utilisateur.
 // Action pour mettre à jour le profil utilisateur
 export const updateUserProfile = (profileData) => async (dispatch) => {
   const token = localStorage.getItem('token');// Récupération du token stocké dans le localStorage
@@ -87,11 +86,8 @@ export const updateUserProfile = (profileData) => async (dispatch) => {
       // Si les informations mises à jour sont reçues, elles sont stockées dans le localStorage
       localStorage.setItem('userDetails', JSON.stringify(response.data.body));
 
-      // Envoi d'une action de succès de mise à jour de profil avec les données utilisateur mises à jour en tant que payload
-      dispatch({
-        type: 'UPDATE_PROFILE_SUCCESS',
-        payload: response.data.body,
-      });
+      //Déclenche UPDATE_PROFILE_SUCCESS pour signaler que le profil a été mis à jour dans le store.
+      dispatch({ type: 'UPDATE_PROFILE_SUCCESS', payload: response.data.body, });
     } else {
        // Gestion du cas où la réponse de l'API est inattendue
       console.error('Réponse inattendue du serveur', response.data);
@@ -103,7 +99,10 @@ export const updateUserProfile = (profileData) => async (dispatch) => {
 };
 
 
+
+
 // Action pour la déconnexion de l'utilisateur
+//Supprime toutes les données liées à l'utilisateur du localStorage et déclenche LOGOUT pour déconnecter l'utilisateur.
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('token');// Suppression du token du localStorage
   localStorage.removeItem('userDetails');// Suppression des détails de l'utilisateur du localStorage
@@ -112,3 +111,5 @@ export const logoutUser = () => (dispatch) => {
     type: 'LOGOUT',
   });
 };
+
+//Action -> API -> Reducer -> Mise à jour de l'état.

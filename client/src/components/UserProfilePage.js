@@ -13,7 +13,7 @@ const UserProfilePage = () => {
   const [firstName, setFirstName] = useState(userDetails.firstName || ''); // État pour le prénom de l'utilisateur, initialisé avec les détails de l'utilisateur ou une chaîne vide
   const [lastName, setLastName] = useState(userDetails.lastName || ''); // État pour le nom de famille de l'utilisateur, initialisé avec les détails de l'utilisateur ou une chaîne vide
 
-  // Données des comptes de l'utilisateur, définies localement pour cet exemple
+  // Données des comptes de l'utilisateur, définies localement 
   const accounts = [
     {
       title: 'Argent Bank Checking (x8349)',

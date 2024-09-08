@@ -9,8 +9,6 @@ const SignInPage = () => {
   // Déclaration de l'état local pour stocker les valeurs des champs de saisie email et mot de passe
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-
   const dispatch = useDispatch(); // Utilisation du hook useDispatch pour obtenir la fonction dispatch
   const navigate = useNavigate(); // Utilisation du hook useNavigate pour la navigation
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated); // Récupération de l'état d'authentification de l'utilisateur depuis le store Redux
