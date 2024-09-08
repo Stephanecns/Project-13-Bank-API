@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux'; // Importation du hook useSelector de React-Redux pour accéder à l'état global
 import { Navigate } from 'react-router-dom'; // Importation du composant Navigate de React Router pour gérer la redirection
 
-// Déclaration d'un composant fonctionnel nommé 'ProtectedRoute'.
-// Ce composant prend en prop 'children', qui représente les composants enfants qu'il doit rendre.
+//Navigation conditionnelle (ProtectedRoute) : L'utilisateur tente d'accéder à une page protégée → useSelector vérifie l'état de connexion → Redirection si nécessaire.
+
 const ProtectedRoute = ({ children }) => {
   // Utilisation du hook useSelector pour récupérer l'état d'authentification de l'utilisateur depuis le store Redux.
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);

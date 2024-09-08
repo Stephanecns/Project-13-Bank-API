@@ -1,4 +1,5 @@
-// src/components/SignInPage.js
+//Redux est utilisé pour gérer l'authentification.
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; // Importation des hooks de React-Redux pour la gestion de l'état global et des actions
 import { useNavigate } from 'react-router-dom'; // Importation du hook useNavigate de React Router pour gérer la navigation

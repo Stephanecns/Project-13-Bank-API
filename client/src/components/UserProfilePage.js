@@ -1,3 +1,5 @@
+//Redux est utilisé pour gérer l'affichage et la mise à jour du profil.
+
 import React, { useState } from 'react'; // Importation des modules React nécessaires
 import { useDispatch, useSelector } from 'react-redux'; // Importation des hooks de React-Redux pour gérer l'état global et les actions
 import { updateUserProfile } from '../redux/actions/authActions'; // Importation de l'action updateUserProfile pour mettre à jour le profil utilisateur
